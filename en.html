@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroEstate Properties | Land Buying & Selling Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #0D6543;
+            --primary-dark: #06402A;
+            --accent-green: #27AE60;
+            --soft-green: #EAF4EE;
+            --bg-light: #F4F7F5;
+            --text-dark: #121F19;
+            --text-muted: #52635B;
+            --white: #FFFFFF;
+            --border-light: #E1E8E4;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 10px 25px -5px rgba(13, 101, 67, 0.08), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 35px -10px rgba(13, 101, 67, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+            
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Title Styling */
+        .section-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-green);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Top Notification Bar */
+        .top-bar {
+            background-color: var(--primary-dark);
+            color: #A3E2C9;
+            font-size: 0.85rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Header / Navigation */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: var(--primary-green);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--soft-green);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .btn-nav-ebook {
+            background-color: var(--primary-green);
+            color: var(--white) !important;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(13, 101, 67, 0.2);
+        }
+
+        .btn-nav-ebook:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Full Width Hero Banner */
+        .hero-banner {
+            background: linear-gradient(180deg, #0D6543 0%, #084830 100%),
+                        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.04'/%3E%3C/svg%3E");
+            color: var(--white);
+            padding: 70px 0 90px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.6rem;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #C8E6C9;
+            margin-bottom: 35px;
+            max-width: 600px;
+        }
+
+        .hero-cta-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            flex: 1;
+            min-width: 220px;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-hero-primary {
+            background-color: var(--white);
+            color: var(--primary-dark);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-hero-primary:hover {
+            background-color: var(--soft-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-hero-secondary {
+            background-color: #2ECC71;
+            color: var(--primary-dark);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.25);
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: #27AE60;
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .hero-illustration {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-illustration svg {
+            width: 100%;
+            max-width: 420px;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Main Section Container */
+        .main-content {
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 60px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(13, 101, 67, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-green));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background-color: var(--soft-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-green);
+        }
+
+        .card-badge {
+            display: inline-block;
+            background-color: var(--soft-green);
+            color: var(--primary-dark);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-card {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-card:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 6px 15px rgba(13, 101, 67, 0.25);
+        }
+
+        /* Govt Links Cards Specific Style */
+        .govt-card {
+            border-top: 5px solid #006a4e;
+        }
+
+        .govt-card::before {
+            display: none;
+        }
+
+        .btn-govt {
+            background-color: #006a4e;
+        }
+
+        .btn-govt:hover {
+            background-color: #004d39;
+        }
+
+        /* Ebook Lead Magnet Section */
+        .ebook-card {
+            background: linear-gradient(135deg, #084830 0%, #0D6543 100%);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 45px;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 40px;
+            align-items: center;
+            margin: 45px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ebook-visual {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            padding: 35px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .ebook-visual svg {
+            width: 70px;
+            height: 70px;
+            fill: #2ECC71;
+        }
+
+        .ebook-content h3 {
+            font-size: 1.85rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .ebook-content p {
+            color: #C8E6C9;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .ebook-form {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .ebook-form input {
+            flex: 1;
+            min-width: 240px;
+            padding: 14px 18px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .ebook-form button {
+            background-color: var(--accent-green);
+            color: var(--white);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .ebook-form button:hover {
+            background-color: #219653;
+            transform: translateY(-2px);
+        }
+
+        /* Asset Club Section */
+        .asset-club-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            margin-bottom: 50px;
+        }
+
+        .asset-club-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .asset-club-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .asset-club-card p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            max-width: 800px;
+        }
+
+        .club-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(13, 101, 67, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-dark);
+            color: #A3E2C9;
+            padding: 60px 0 25px 0;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 18px;
+            font-size: 1.15rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid, .ebook-card {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .main-content {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Bar -->
+    <div class="full-width top-bar">
+        <div class="container">
+            <span>Today: Wednesday, September 2, 2026</span>
+            <div>
+                <a href="index.html" style="margin-right: 15px;">বাংলা</a>
+                <a href="#">Help & Support</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <nav class="full-width navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
+                </div>
+                <span>MicroEstate Properties</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#services">Our Services</a></li>
+                <li><a href="#buy-sell">Buy & Sell</a></li>
+                <li><a href="#govt-links">Govt Services</a></li>
+                <li><a href="#asset-club">Asset Club</a></li>
+                <li><a href="#ebook" class="btn-nav-ebook">Free E-Book</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full Width Hero Banner -->
+    <header class="full-width hero-banner">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Welcome to MicroEstate Properties!</h1>
+                <p>We are your trusted partner for secure land transactions in Faridpur and Dhaka. Looking for land with verified legal documents or want to list your property for sale? Submit your details today.</p>
+                
+                <div class="hero-cta-box">
+                    <button class="btn-hero btn-hero-primary" onclick="openForm('seller')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+                        Submit Land Details for Sale
+                    </button>
+                    <button class="btn-hero btn-hero-secondary" onclick="openForm('buyer')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/></svg>
+                        Express Buying Interest
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-illustration">
+                <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="300" rx="16" fill="#06402A" fill-opacity="0.4"/>
+                    <circle cx="200" cy="120" r="70" fill="#2ECC71" fill-opacity="0.15"/>
+                    <path d="M80 220L200 110L320 220H80Z" fill="#27AE60"/>
+                    <path d="M140 220L200 165L260 220H140Z" fill="#A3E2C9"/>
+                    <path d="M185 220V185H215V220H185Z" fill="#06402A"/>
+                    <circle cx="200" cy="90" r="24" fill="#E74C3C"/>
+                    <circle cx="200" cy="90" r="9" fill="#FFFFFF"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="container main-content" id="buy-sell">
+        
+        <!-- Seller / Buyer Action Cards -->
+        <div class="cards-grid">
+            <!-- Seller Card -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M15,11V5l-3-3-3,3v6H3v11h18V11H15z M11,4.83L12,3.83l1,1V11h-2V4.83z M19,20H5v-7h14V20z"/></svg>
+                        </div>
+                        <span class="card-badge">For Land Sellers</span>
+                    </div>
+                    <h3>Want to Sell Your Land?</h3>
+                    <p>We are ready to add your property directly to our featured listings. Submit your property details using our form, and we will connect you with genuine buyers.</p>
+                </div>
+                <button class="btn-card" onclick="openForm('seller')">
+                    Fill Seller Form
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/></svg>
+                </button>
+            </div>
+
+            <!-- Buyer Card -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12,2C8.13,2 5,5.13 5,9c0,5.25 7,13 7,13c0,0 7,-7.75 7,-13c0,-3.87 -3.13,-7 -7,-7zm0,9.5c-1.38,0 -2.5,-1.12 -2.5,-2.5s1.12,-2.5 2.5,-2.5 2.5,1.12 2.5,2.5 -1.12,2.5 -2.5,2.5z"/></svg>
+                        </div>
+                        <span class="card-badge">For Land Buyers</span>
+                    </div>
+                    <h3>Looking for Your Ideal Plot?</h3>
+                    <p>Share your budget and preferred locations with us. As soon as a property matching your criteria becomes available, you will be notified first.</p>
+                </div>
+                <button class="btn-card" onclick="openForm('buyer')">
+                    Fill Buyer Form
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <section id="services" style="padding-top: 20px;">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive solutions designed for safe and risk-free property dealings</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Service 1 -->
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 3L2 12H5V20H19V12H22L12 3M12 7.7C14.1 7.7 15.8 9.4 15.8 11.5C15.8 13.6 14.1 15.3 12 15.3C9.9 15.3 8.2 13.6 8.2 11.5C8.2 9.4 9.9 7.7 12 7.7Z"/></svg>
+                            </div>
+                            <span class="card-badge">Brokerage</span>
+                        </div>
+                        <h3>Safe Land Trading</h3>
+                        <p>We connect genuine land buyers and sellers across Faridpur and Dhaka, ensuring trustworthy and seamless transactions.</p>
+                    </div>
+                    <button class="btn-card" onclick="openForm('buyer')">Get Consultation</button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M9 17H7V10H9V17M13 17H11V7H13V17M17 17H15V13H17V17Z"/></svg>
+                            </div>
+                            <span class="card-badge">Verification</span>
+                        </div>
+                        <h3>Title & Khatian Verification</h3>
+                        <p>Before buying, we professionally verify CS, SA, RS, and BS Khatians along with original ownership deeds to ensure clear titles.</p>
+                    </div>
+                    <button class="btn-card" onclick="alert('Please email or call us directly to verify Khatians and land documents.')">Send Documents</button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24"><path d="M16 11C17.66 11 18.99 9.66 18.99 8C18.99 6.34 17.66 5 16 5C14.34 5 13 6.34 13 8C13 9.66 14.34 11 16 11M8 11C9.66 11 10.99 9.66 10.99 8C10.99 6.34 9.66 5 8 5C6.34 5 5 6.34 5 8C5 9.66 6.34 11 8 11M8 13C5.67 13 1 14.17 1 16.5V19H15V16.5C15 14.17 10.33 13 8 13M16 13C15.71 13 15.38 13.02 15.03 13.05C16.19 13.89 17 15.02 17 16.5V19H23V16.5C23 14.17 18.33 13 16 13Z"/></svg>
+                            </div>
+                            <span class="card-badge">Shared Investment</span>
+                        </div>
+                        <h3>Joint Land Purchase (Shared Property)</h3>
+                        <p>If you have a modest budget, co-invest with verified investors to acquire high-value land using our safe fractional ownership model.</p>
+                    </div>
+                    <a href="#asset-club" class="btn-card">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ebook Download Section -->
+        <section class="ebook-card" id="ebook">
+            <div class="ebook-visual">
+                <svg viewBox="0 0 24 24"><path d="M19,2L14,6.5V17.5L19,13V2M6.5,5V18.5L11,14V3L6.5,5M2,6V19C2,20.1 2.9,21 4,21H20C21.1,21 22,20.1 22,19V6H2Z"/></svg>
+                <h4 style="margin-top: 10px; color: #FFF;">Free Guidebook</h4>
+            </div>
+            <div class="ebook-content">
+                <h3>Legal Checklist & E-Book Before Buying Land</h3>
+                <p>Enter your email to receive our free e-book guide covering Khatians, land mutation (e-Mutation), and techniques to spot forged deeds.</p>
+                <form class="ebook-form" onsubmit="handleEbookDownload(event)">
+                    <input type="email" id="ebookEmail" placeholder="Enter your valid email address" required>
+                    <button type="submit">Download Free E-Book</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Government Official Land Links -->
+        <section id="govt-links" style="padding-top: 10px;">
+            <div class="section-header">
+                <h2>Government of Bangladesh - Land Service Links</h2>
+                <p>Access official land services directly through government web portals</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Govt Link 1 -->
+                <div class="card govt-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon" style="background-color: #E8F5E9;">
+                                <svg viewBox="0 0 24 24" fill="#006a4e"><path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2M18 20H6V4H13V9H18V20M8 12V14H16V12H8M8 16V18H13V16H8Z"/></svg>
+                            </div>
+                            <span class="card-badge" style="background-color: #E8F5E9; color: #006a4e;">dlrms.land.gov.bd</span>
+                        </div>
+                        <h3>Online e-Porcha</h3>
+                        <p>Apply directly on the official government portal for certified online copies of CS, SA, RS, and BRS Khatians.</p>
+                    </div>
+                    <a href="https://dlrms.land.gov.bd/" target="_blank" class="btn-card btn-govt">
+                        Visit Porcha Portal
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
+                    </a>
+                </div>
+
+                <!-- Govt Link 2 -->
+                <div class="card govt-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon" style="background-color: #E8F5E9;">
+                                <svg viewBox="0 0 24 24" fill="#006a4e"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M12 6E1.66 0 3 1.34 3 3S13.66 9 12 9 9 7.66 9 6 10.34 3 12 3M18 18H6V16.5C6 14.5 10 13.4 12 13.4S18 14.5 18 16.5V18Z"/></svg>
+                            </div>
+                            <span class="card-badge" style="background-color: #E8F5E9; color: #006a4e;">mutation.land.gov.bd</span>
+                        </div>
+                        <h3>e-Mutation System</h3>
+                        <p>Visit the official government portal to apply online for land mutation and land record updates.</p>
+                    </div>
+                    <a href="https://mutation.land.gov.bd" target="_blank" class="btn-card btn-govt">
+                        e-Mutation Portal
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
+                    </a>
+                </div>
+
+                <!-- Govt Link 3 -->
+                <div class="card govt-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon" style="background-color: #E8F5E9;">
+                                <svg viewBox="0 0 24 24" fill="#006a4e"><path d="M11.8 10.9C9.53 10.31 8.8 9.7 8.8 8.75C8.8 7.66 9.81 6.9 11.5 6.9C13.28 6.9 13.94 7.75 14 9H16.21C16.14 7.28 15.09 5.7 13 5.19V3H10V5.16C8.06 5.61 6.5 6.84 6.5 8.77C6.5 11.08 8.41 12.23 11.2 12.9C13.7 13.5 14.2 14.38 14.2 15.31C14.2 16 13.6 17.1 11.5 17.1C9.37 17.1 8.53 16.03 8.41 14.8H6.19C6.33 17.16 8.03 18.38 10 18.83V21H13V18.85C14.95 18.47 16.5 17.35 16.5 15.3C16.5 12.61 14.07 11.5 11.8 10.9Z"/></svg>
+                            </div>
+                            <span class="card-badge" style="background-color: #E8F5E9; color: #006a4e;">ldtax.gov.bd</span>
+                        </div>
+                        <h3>Land Development Tax</h3>
+                        <p>Calculate your land development tax online and pay land rent directly using mobile banking or credit/debit cards.</p>
+                    </div>
+                    <a href="https://ldtax.gov.bd" target="_blank" class="btn-card btn-govt">
+                        Land Tax Portal
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Asset Club Section -->
+        <section class="asset-club-card" id="asset-club">
+            <h3>Our 'Asset Club' Dashboard</h3>
+            <p>Join Asset Club to access savings plans for future land acquisitions and learn about small-scale real estate asset growth models.</p>
+            <div class="club-buttons">
+                <a href="club.html" target="_blank" class="btn-outline">
+                    View Asset Club Plan
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
+                </a>
+                <a href="https://forms.google.com" target="_blank" class="btn-outline">Log In</a>
+                <a href="https://forms.google.com" target="_blank" class="btn-outline">Sign Up</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="full-width footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MicroEstate Properties</h4>
+                    <p style="font-size: 0.92rem; color: #A3E2C9; line-height: 1.7;">Registered land brokerage and real estate advisory agency under Faridpur Pourashava.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#buy-sell">Land Registration Form</a></li>
+                        <li><a href="#govt-links">Govt Land Portals</a></li>
+                        <li><a href="#asset-club">Asset Club</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 5px;">Faridpur, Bangladesh</p>
+                    <p style="font-size: 0.9rem;">Email: info@microestate.com.bd</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MicroEstate Properties. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Handling -->
+    <script>
+        const sellerFormUrl = "https://docs.google.com/forms/d/e/YOUR_SELLER_FORM_ID/viewform";
+        const buyerFormUrl = "https://docs.google.com/forms/d/e/YOUR_BUYER_FORM_ID/viewform";
+
+        function openForm(type) {
+            if (type === 'seller') {
+                window.open(sellerFormUrl, '_blank');
+            } else if (type === 'buyer') {
+                window.open(buyerFormUrl, '_blank');
+            }
+        }
+
+        function handleEbookDownload(event) {
+            event.preventDefault();
+            const email = document.getElementById('ebookEmail').value;
+            if (email) {
+                alert('Thank you! The e-book download link is being sent to your email.');
+                window.open(buyerFormUrl + '?entry.email=' + encodeURIComponent(email), '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
