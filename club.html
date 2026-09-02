@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEP Asset Club | প্রপার্টি বুকিং ও ল্যান্ড ভ্যালু গ্রোথ ক্যালকুলেটর</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #0D6543;
+            --primary-dark: #06402A;
+            --accent-green: #27AE60;
+            --soft-green: #EAF4EE;
+            --bg-light: #F4F7F5;
+            --text-dark: #121F19;
+            --text-muted: #52635B;
+            --white: #FFFFFF;
+            --border-light: #E1E8E4;
+            --gold-accent: #D4AF37;
+            --warning-orange: #E67E22;
+            --warning-bg: #FFFDF5;
+            
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 30px -5px rgba(13, 101, 67, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 20px 40px -10px rgba(13, 101, 67, 0.12), 0 8px 20px -6px rgba(0, 0, 0, 0.04);
+            
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-green);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-dark);
+            color: #A3E2C9;
+            font-size: 0.85rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: var(--primary-green);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--soft-green);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .btn-nav-apply {
+            background-color: var(--primary-green);
+            color: var(--white) !important;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(13, 101, 67, 0.2);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(180deg, #0D6543 0%, #084830 100%);
+            color: var(--white);
+            padding: 60px 0 80px 0;
+            position: relative;
+        }
+
+        .hero-badge-stamp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #E2F3E9;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            line-height: 1.3;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #C8E6C9;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .stat-card h4 {
+            font-size: 1.5rem;
+            color: #2ECC71;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 0.9rem;
+            color: #EAF4EE;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 60px;
+        }
+
+        .content-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 35px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            transition: var(--transition);
+        }
+
+        .content-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Disclaimer Card Styling */
+        .disclaimer-card {
+            background-color: var(--warning-bg);
+            border: 2px solid #F39C12;
+            border-left: 6px solid var(--warning-orange);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .disclaimer-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .disclaimer-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .disclaimer-header h3 {
+            color: #D35400;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .disclaimer-body {
+            color: #4A3B32;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        /* Interactive Calculator Styling */
+        .calc-wrapper {
+            background: linear-gradient(135deg, #F4F7F5 0%, #EAF4EE 100%);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-top: 25px;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .calc-controls {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .calc-slider-group {
+            margin-bottom: 20px;
+        }
+
+        .calc-slider-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .unit-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: var(--border-light);
+            outline: none;
+            accent-color: var(--primary-green);
+        }
+
+        .unit-display-badge {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .calc-results {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .res-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.95rem;
+        }
+
+        .res-row.highlight {
+            border-bottom: none;
+            background: rgba(39, 174, 96, 0.18);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .res-val {
+            font-weight: 700;
+            color: #2ECC71;
+        }
+
+        /* Unit System Info Box */
+        .unit-system-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .unit-info-item {
+            background-color: var(--soft-green);
+            padding: 22px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-green);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .unit-info-item h4 {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        /* Dual Product Plan Cards */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .plan-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            border: 2px solid var(--border-light);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-card.featured {
+            border-color: var(--primary-green);
+            box-shadow: var(--shadow-md);
+        }
+
+        .plan-tag {
+            position: absolute;
+            top: -14px;
+            right: 25px;
+            background: var(--primary-green);
+            color: var(--white);
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .plan-card h3 {
+            font-size: 1.35rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-top: 18px;
+        }
+
+        .plan-features li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Summary Table Styling */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 650px;
+        }
+
+        .summary-table th {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 14px 16px;
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        .summary-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.92rem;
+        }
+
+        .summary-table tr:nth-child(even) {
+            background-color: #F8FBF9;
+        }
+
+        .summary-table tr:hover {
+            background-color: var(--soft-green);
+        }
+
+        /* Legal Clause Box */
+        .legal-box {
+            background-color: #FFF9E6;
+            border: 1px dashed #D4AF37;
+            border-radius: var(--radius-md);
+            padding: 22px;
+            margin-top: 25px;
+        }
+
+        .legal-box h4 {
+            color: #8A6D3B;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Steps Section */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .step-card {
+            background: var(--soft-green);
+            padding: 22px;
+            border-radius: var(--radius-md);
+            position: relative;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+        }
+
+        .step-card:hover {
+            transform: translateY(-3px);
+            background: #E2F0E7;
+        }
+
+        .step-number {
+            width: 38px;
+            height: 38px;
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 12px auto;
+        }
+
+        /* Document Checklist */
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-light);
+            padding: 14px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-green);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-dark);
+            color: #A3E2C9;
+            padding: 40px 0 20px 0;
+            margin-top: 40px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.8rem; }
+            .calc-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="full-width top-bar">
+        <div class="container">
+            <span>🏢 MEP - MicroEstate Properties Asset Club</span>
+            <span>প্রপার্টি বুকিং ও ল্যান্ড ভ্যালু প্রজেক্ট</span>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <nav class="full-width navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
+                </div>
+                <span>মাইক্রো এস্টেট প্রপারটিস.</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#overview">ওভারভিউ</a></li>
+                <li><a href="#calculator">ক্যালকুলেটর</a></li>
+                <li><a href="#plans">প্রপার্টি প্ল্যান</a></li>
+                <li><a href="#summary">ল্যান্ড সামারি</a></li>
+                <li><a href="#steps">অনবোর্ডিং ধাপ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <header class="full-width hero-banner">
+        <div class="container">
+            <div class="hero-badge-stamp">
+                📜 ৩০০ টাকার নন-জুডিশিয়াল স্ট্যাম্প ও অফিশিয়াল প্রপার্টি চুক্তি
+            </div>
+            <h1 class="hero-title">মাস্টার অনবোর্ডিং অ্যাপ্লিকেশন ও ওভারভিউ</h1>
+            <p class="hero-subtitle">
+                সহজ অগ্রিম কিস্তিতে গড়ে তুলুন ভবিষ্যতের নিজস্ব ল্যান্ড অ্যাসেট। মধ্যবিত্ত পরিবারের জন্য শতভাগ সুরক্ষিত ও Land-Backed (জমি দ্বারা সুরক্ষিত) আধুনিক ল্যান্ড-বুকিং ফ্রেমওয়ার্ক।
+            </p>
+
+            <div class="hero-stats-grid">
+                <div class="stat-card">
+                    <h4>১ Unit = ৳ ১,০০০/মাস</h4>
+                    <p>নমনীয় অগ্রিম বুকিং সিস্টেম</p>
+                </div>
+                <div class="stat-card">
+                    <h4>৩ বছর (৩৬ মাস)</h4>
+                    <p>মেয়াদী প্রজেক্ট সেশন</p>
+                </div>
+                <div class="stat-card">
+                    <h4>১ - ৫০ Units</h4>
+                    <p>বাজেট অনুযায়ী পছন্দ করার সুবিধা</p>
+                </div>
+                <div class="stat-card">
+                    <h4>৳ ৫০০ টাকা</h4>
+                    <p>এককালীন অ্যাকাউন্ট সেটআপ ফি</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container main-content" id="overview">
+
+        <!-- Unit System Overview -->
+        <section class="content-card">
+            <div class="section-header" style="text-align: left; margin-bottom: 20px;">
+                <h2>🎟️ Unit System ও প্রজেক্ট অনবোর্ডিং</h2>
+                <p>আমাদের প্রাতিষ্ঠানিক প্রজেক্টে যুক্ত হওয়া অত্যন্ত সহজ ও স্বচ্ছ</p>
+            </div>
+            
+            <p style="color: var(--text-dark); margin-bottom: 15px;">
+                সাধারণ মধ্যবিত্ত পরিবারের জন্য এককালীন বড় অংকের টাকা দিয়ে জমি বা প্রপার্টি কেনা বেশ কঠিন। MEP নিয়ে এসেছে বাস্তবসম্মত সমাধান। এখন থেকে আপনি প্রতি মাসে ছোট ছোট অগ্রিম কিস্তিতে প্রপার্টি শেয়ার বা Unit কিনে ভবিষ্যতের রিয়েল এস্টেট অ্যাসেটে নিজের অবস্থান সুনিশ্চিত করতে পারবেন।
+            </p>
+
+            <div class="unit-system-box">
+                <div class="unit-info-item">
+                    <h4>১টি Unit এর হিসাব</h4>
+                    <p>১টি Unit = প্রতি মাসে ১,০০০ টাকা অগ্রিম বুকিং জমা।</p>
+                </div>
+                <div class="unit-info-item">
+                    <h4>অনুমোদিত সীমা</h4>
+                    <p>সর্বনিম্ন ১টি Unit (৳ ১,০০০/মাস) থেকে সর্বোচ্চ ৫০টি Unit (৳ ৫০,০০০/মাস)।</p>
+                </div>
+                <div class="unit-info-item">
+                    <h4>প্রজেক্ট ব্যাচ Code</h4>
+                    <p><strong>MEP_LAND_CIRCLE_01_SEP2026_AUG2029</strong> (মেয়াদ: ৩ বছর)।</p>
+                </div>
+                <div class="unit-info-item">
+                    <h4>এককালীন সেটআপ ফি</h4>
+                    <p>৳ ৫০০ (পাঁচশত) টাকা — নোটারি/স্ট্যাম্প পেপার প্রসেসিং ও অফিশিয়াল ফাইলিং ফি (Non-refundable)।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Land Appreciation Calculator -->
+        <section class="content-card" id="calculator">
+            <div class="section-header">
+                <h2>🧮 প্রপার্টি বুকিং ও ল্যান্ড ভ্যালু গ্রোথ ক্যালকুলেটর</h2>
+                <p>আপনার ইউনিটের ওপর ভিত্তি করে ৩ বছরের সম্ভাব্য ল্যান্ড ভ্যালুয়েশন হিসাব করুন</p>
+            </div>
+
+            <div class="calc-wrapper">
+                <div class="calc-grid">
+                    <div class="calc-controls">
+                        <div class="calc-slider-group">
+                            <label for="unitRange">আপনার পছন্দনীয় Unit নির্বাচন করুন:</label>
+                            <div class="unit-display-badge"><span id="unitVal">1</span> Unit</div>
+                            <input type="range" id="unitRange" class="unit-slider" min="1" max="50" value="1" oninput="calculateGrowth()">
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); text-align: center;">
+                            (মাসিক জমা: ৳ <span id="monthlyDeposit">1,000</span> টাকা | ৩ বছরের মেয়াদ)
+                        </p>
+                    </div>
+
+                    <div class="calc-results">
+                        <h4 style="color: #2ECC71; margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 8px;">
+                            📊 ৩ বছর শেষে আনুমানিক প্রপার্টি ভ্যালুয়েশন
+                        </h4>
+                        
+                        <div class="res-row">
+                            <span>মোট জমা (৩ বছর / ৩৬ মাস):</span>
+                            <span class="res-val">৳ <span id="totalAdvance">36,000</span></span>
+                        </div>
+                        <div class="res-row">
+                            <span>মূল প্রপার্টি বাইব্যাক মার্জিন (<span id="growthPercent">5</span>%):</span>
+                            <span class="res-val">+ ৳ <span id="baseMargin">1,800</span></span>
+                        </div>
+                        <div class="res-row" style="font-weight: 600;">
+                            <span>নিশ্চিত ন্যূনতম বাইব্যাক ভ্যালু:</span>
+                            <span style="color: #FFF;">৳ <span id="guaranteedVal">37,800</span></span>
+                        </div>
+                        
+                        <div class="res-row highlight">
+                            <div>
+                                <strong>জমি ক্রয়-বিক্রয়ে ৩০% প্রফিট হলে:</strong><br>
+                                <small style="font-size: 0.8rem; opacity: 0.85;">(মোট প্রপার্টি ভ্যালু)</small>
+                            </div>
+                            <span class="res-val" style="font-size: 1.15rem; color: #FFF;">৳ <span id="profit30Val">46,800</span></span>
+                        </div>
+
+                        <div class="res-row highlight" style="background: rgba(46, 204, 113, 0.28);">
+                            <div>
+                                <strong>জমি ক্রয়-বিক্রয়ে ৪০% প্রফিট হলে:</strong><br>
+                                <small style="font-size: 0.8rem; opacity: 0.85;">(সর্বোচ্চ প্রপার্টি ভ্যালু)</small>
+                            </div>
+                            <span class="res-val" style="font-size: 1.25rem; color: #2ECC71;">৳ <span id="profit40Val">50,400</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dual Product Plans -->
+        <section class="content-card" id="plans">
+            <div class="section-header">
+                <h2>📦 কাস্টমারদের জন্য দ্বৈত প্রপার্টি প্ল্যান (Dual-Product Plan)</h2>
+                <p>আপনার সুবিধা অনুযায়ী নিচের যেকোনো একটি ক্যাটাগরি বেছে নিন</p>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Option 1 -->
+                <div class="plan-card">
+                    <h3>🔹 অপশন ১: MEP ডিরেক্ট ল্যান্ড বুকিং</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">(Pure Land-Backed Plan)</p>
+                    <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--border-light);">
+                    <p style="font-size: 0.95rem;">যাঁরা কেবল সহজ অগ্রিম কিস্তিতে টাকা পরিশোধ করে ভবিষ্যতে জমি বা ফ্ল্যাটের একক মালিকানা নিশ্চিত করতে চান:</p>
+                    <ul class="plan-features">
+                        <li><strong>ফান্ড নিরাপত্তা:</strong> এই ফান্ডের টাকা অন্য কোনো খাত বা ব্যবসায় ব্যবহার করা হয় না। কেবল আপনার ভবিষ্যতের জমি/প্রপার্টি ক্রয়ের অগ্রিম মূল্য হিসেবে সংরক্ষিত থাকে।</li>
+                        <li><strong>প্রপার্টি রূপান্তর:</strong> ৩ বছরের মেয়াদের শেষে জমানো সম্পূর্ণ অর্থ সরাসরি কোম্পানির প্রজেক্টের জমি বা প্লটের মূল বুকিং মূল্য (Downpayment) হিসেবে রূপান্তর করা হয়।</li>
+                    </ul>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="plan-card featured">
+                    <span class="plan-tag">জনপ্রিয় প্ল্যান</span>
+                    <h3>🔹 অপশন ২: MEP ল্যান্ড ভ্যালু গ্রোথ ইউনিট</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">(Property Growth & Appreciation Units)</p>
+                    <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--border-light);">
+                    <p style="font-size: 0.95rem;">যাঁরা প্রপার্টি বুকিংয়ের পাশাপাশি প্রপার্টির বাৎসরিক ল্যান্ড অ্যাপ্রিসিয়েশন ও প্রফিট সুবিধা উপভোগ করতে চান:</p>
+                    <ul class="plan-features">
+                        <li><strong>Asset Backing:</strong> জমাকৃত অগ্রিম অর্থ বাস্তব জমি, টাউন প্রজেক্ট ও বাণিজ্যিক প্রপার্টি অ্যাসেটে যুক্ত থাকে। স্থাবর সম্পত্তি দ্বারা আইনি ব্যাকআপ নিশ্চিত।</li>
+                        <li><strong>Buyback Margin:</strong> চুক্তির সময়কাল (৩ বছর) অনুযায়ী বাইব্যাক সুবিধার আওতায় নির্ধারিত প্রপার্টি গ্রোথ মার্জিন নিশ্চিত করা হয়।</li>
+                        <li><strong>Land Appreciation:</strong> প্রজেক্টের জমি সফলভাবে ক্রয়-বিক্রয় ও উন্নয়ন করা হলে বাৎসরিক প্রপার্টি প্রফিট সর্বোচ্চ ৩০% থেকে ৪০% পর্যন্ত হতে পারে।</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Table Section -->
+        <section class="content-card" id="summary">
+            <div class="section-header">
+                <h2>📊 ইউনিট বুকিং ও প্রপার্টি গ্রোথ সামারি</h2>
+                <p>প্রজেক্ট মেয়াদী ব্যাচ: MEP BATCH-01 (মেয়াদ: ৩ বছর / ৩৬ মাস)</p>
+            </div>
+
+            <div class="table-responsive">
+                <table class="summary-table">
+                    <thead>
+                        <tr>
+                            <th>ইউনিট ব্র্যাকেট (Units)</th>
+                            <th>মাসিক অগ্রিম জমা</th>
+                            <th>৩ বছরের মোট জমা</th>
+                            <th>বাইব্যাক প্রপার্টি মার্জিন</th>
+                            <th>৩ বছর পর ন্যূনতম প্রপার্টি ভ্যালু</th>
+                            <th>জমি বিক্রয়ে প্রফিট হলে (30% – 40%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>১ থেকে ৩ Unit</strong></td>
+                            <td>৳ ১,০০০ – ৳ ৩,০০০</td>
+                            <td>৳ ৩৬,০০০ – ৳ ১,০৮,০০০</td>
+                            <td>৫.০০%</td>
+                            <td>৳ ৩৭,৮০০ – ৳ ১,১৩,৪০০</td>
+                            <td><strong>৳ ৪৬,৮০০ – ৳ ১,৫১,২০০</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>৪ থেকে ৭ Unit</strong></td>
+                            <td>৳ ৪,০০০ – ৳ ৭,০০০</td>
+                            <td>৳ ১,৪৪,০০০ – ৳ ২,৫২,০০০</td>
+                            <td>৬.৫০%</td>
+                            <td>৳ ১,৫৩,৩৬০ – ৳ ২,৬৮,৩৮০</td>
+                            <td><strong>৳ ১,৮৭,২০০ – ৳ ৩,৫২,৮০০</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>৮ থেকে ৫০ Unit</strong></td>
+                            <td>৳ ৮,০০০ – ৳ ৫০,০০০</td>
+                            <td>৳ ২,৮৮,০০০ – ৳ ১৮,০০,০০০</td>
+                            <td>৭.৫০%</td>
+                            <td>৳ ৩,০৯,৬০০ – ৳ ১৯,৩৫,০০০</td>
+                            <td><strong>৳ ৩,৭৪,৪০০ – ৳ ২৫,২০,০০০</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="legal-box">
+                <h4>⚖️ আইনি ও প্রপার্টি সুরক্ষা ধারা (Legal Safeguard Clause)</h4>
+                <p style="font-size: 0.92rem; color: #555; line-height: 1.7;">
+                    "কোম্পানি গ্রাহকের জমাকৃত অগ্রিম বুকিং অর্থ শতভাগ সুরক্ষিত রাখার লক্ষ্যে এবং ভবিষ্যতে প্রপার্টি হস্তান্তর/অধিগ্রহণের পূর্ব পর্যন্ত উক্ত ফান্ড কেবল ‘রিয়েল এস্টেট ল্যান্ড এসেট, প্রপার্টি ডেভেলপমেন্ট ও সংগৃহীত প্রপার্টি উন্নয়ন প্রকল্পে’ সংরক্ষণ ও পরিচালনা করবে। উক্ত ফান্ডের ওপর অন্য কোনো প্রার্থীর স্বত্ব বা দাবি গ্রহণযোগ্য হবে না।"
+                </p>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <h3 style="color: var(--primary-dark); font-size: 1.3rem; margin-bottom: 15px;">🔮 মেয়াদ শেষে ইউনিটের ভবিষ্যৎ (Future Asset Execution)</h3>
+                <div class="unit-system-box">
+                    <div class="unit-info-item" style="border-left-color: #27AE60;">
+                        <h4>অপশন A: Property Conversion / Land Share Ownership</h4>
+                        <p>৩ বছরের প্রজেক্ট মেয়াদ শেষে অর্জিত মূল্য বিবেচনা করে সংগৃহীত ল্যান্ড প্রজেক্টে সমমূল্যের "আনুপাতিক জমির শেয়ার মালিকানা" অথবা কমার্শিয়াল স্পেস/এগ্রো প্রজেক্টের শেয়ার রেজিস্ট্রি ও হ্যান্ডওভার করা হবে।</p>
+                    </div>
+                    <div class="unit-info-item" style="border-left-color: #D4AF37;">
+                        <h4>অপশন B: Property Buyback Execution</h4>
+                        <p>গ্রাহক প্রপার্টি না নিতে চাইলে, চুক্তি অনুযায়ী অর্জিত বাইব্যাক ভ্যালু ও ল্যান্ড প্রফিট সুবিধা সহ সম্পূর্ণ ইউনিট কোম্পানি নিজেই পুনঃক্রয় (Buyback) করে পাওনা বুঝিয়ে দেবে।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Steps to Join -->
+        <section class="content-card" id="steps">
+            <div class="section-header">
+                <h2>📑 যুক্ত হওয়ার সহজ ৪টি ধাপ</h2>
+                <p>সহজ প্রক্রিয়ায় আজই আপনার অনবোর্ডিং সম্পন্ন করুন</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">১</div>
+                    <p><strong>Application Form</strong> পূরণ করুন</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">২</div>
+                    <p>সামর্থ্য অনুযায়ী <strong>Unit বাছাই</strong> করুন (১–৫০)</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">৩</div>
+                    <p>১ম মাসের Advance + <strong>৳ ৫০০ সেটআপ ফি</strong> জমা দিন</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">৪</div>
+                    <p><strong>৩০০ টাকার Stamp Agreement</strong> ও Receipt বুঝে নিন</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Required Documents Checklist -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2>📂 প্রয়োজনীয় ডকুমেন্টস (Applicant Checklists)</h2>
+                <p>আবেদনপত্রের সাথে নিচের ডকুমেন্টসগুলো প্রস্তুত রাখুন</p>
+            </div>
+
+            <div class="checklist-grid">
+                <label class="checklist-item">
+                    <input type="checkbox" checked disabled>
+                    <span>আবেদনকারীর NID / পাসপোর্ট / জন্ম সনদ (১ কপি)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" checked disabled>
+                    <span>আবেদনকারীর পাসপোর্ট সাইজ ছবি (২ কপি)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" checked disabled>
+                    <span>নমিনির NID এর ফটোকপি ও ছবি (১ কপি)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" checked disabled>
+                    <span>প্রথম মাসের কিস্তি ও ৳ ৫০০ সেটআপ ফি জমার রশিদ</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- Pure Land Disclaimer Card -->
+        <section class="disclaimer-card">
+            <div class="disclaimer-header">
+                <span class="disclaimer-icon">⚠️</span>
+                <h3>আইনি স্পষ্টীকরণ ও সতর্কবার্তা (Important Legal Disclaimer)</h3>
+            </div>
+            <div class="disclaimer-body">
+                <p>
+                    <strong>MicroEstate Properties (MEP) Asset Club</strong> কোনো ব্যাংক, নন-ব্যাংকিং আর্থিক প্রতিষ্ঠান, সঞ্চয় সমিতি, ডিপিএস (DPS), ফিক্সড ডিপোজিট (FDR) বা সুদি বিনিয়োগ স্কিম নয়। এটি শতভাগ একটি <strong>রিয়েল এস্টেট প্রপার্টি বুকিং ও ল্যান্ড-ব্যাকড (Land-Backed) অ্যাসেট শেয়ারিং প্ল্যাটফর্ম</strong>।
+                </p>
+                <p style="margin-top: 10px;">
+                    গ্রাহকদের জমাকৃত সকল অগ্রিম বুকিং অর্থ সরাসরি বাস্তব প্রপার্টি ক্রয়, জমি উন্নয়ন এবং স্থাবর সম্পদ অর্জনে ব্যবহৃত হয়। প্রতিটি বুকিং ৩০০ টাকার আইনি নন-জুডিশিয়াল স্ট্যাম্প চুক্তি ও রেজিস্টার্ড কোম্পানির ডকুমেন্টেশনের মাধ্যমে সুরক্ষিত।
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="full-width footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MicroEstate Properties (MEP). সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
+
+    <!-- JS Calculator Logic -->
+    <script>
+        function calculateGrowth() {
+            const units = parseInt(document.getElementById('unitRange').value);
+            const monthlyAmount = units * 1000;
+            const total3Years = monthlyAmount * 36; // 36 months deposit
+            
+            let marginRate = 0.05; // Default 5%
+            
+            if (units >= 1 && units <= 3) {
+                marginRate = 0.05; // 5%
+            } else if (units >= 4 && units <= 7) {
+                marginRate = 0.065; // 6.5%
+            } else if (units >= 8) {
+                marginRate = 0.075; // 7.5%
+            }
+
+            const baseMarginAmount = total3Years * marginRate;
+            const guaranteedVal = total3Years + baseMarginAmount;
+            
+            const profit30 = total3Years + (total3Years * 0.30);
+            const profit40 = total3Years + (total3Years * 0.40);
+
+            // Updating UI
+            document.getElementById('unitVal').innerText = units;
+            document.getElementById('monthlyDeposit').innerText = monthlyAmount.toLocaleString('en-BD');
+            document.getElementById('totalAdvance').innerText = total3Years.toLocaleString('en-BD');
+            document.getElementById('growthPercent').innerText = (marginRate * 100).toFixed(1);
+            document.getElementById('baseMargin').innerText = baseMarginAmount.toLocaleString('en-BD');
+            document.getElementById('guaranteedVal').innerText = guaranteedVal.toLocaleString('en-BD');
+            document.getElementById('profit30Val').innerText = profit30.toLocaleString('en-BD');
+            document.getElementById('profit40Val').innerText = profit40.toLocaleString('en-BD');
+        }
+
+        // Initialize on load
+        calculateGrowth();
+    </script>
+</body>
+</html>
